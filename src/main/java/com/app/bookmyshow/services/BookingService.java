@@ -8,6 +8,8 @@ import com.app.bookmyshow.repository.UserRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +37,7 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
+
         public Booking bookTicket(List<Integer> showSeatIds, int showId, int userId){
 
         // get the user using the user id.
@@ -55,6 +58,9 @@ public class BookingService {
 
         Show show = showOpt.get();
 
+//         put below till ending the transaction in separate method and annotate it with below
+//            @Transactional(isolation = Isolation.SERIALIZABLE)
+//      
 //        --------- Start Transaction to get the shared lock -------------
         // get show seats via showSeatId's
         List<ShowSeat> showSeats = showSeatRepository.findAllById(showSeatIds);
@@ -99,7 +105,7 @@ public class BookingService {
         booking.setPayments(new ArrayList<>());
         booking.setShowSeats(showSeats);
 
-        return bookingRepository.save(booking);;
+        return bookingRepository.save(booking);
     }
 
 }
