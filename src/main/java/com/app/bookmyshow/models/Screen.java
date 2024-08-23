@@ -17,6 +17,7 @@ public class Screen extends BaseModel{
     @ManyToOne
     private Theater theater;
     @Enumerated(value = EnumType.STRING)
+    @ElementCollection
     private List<Feature> features;
 
 

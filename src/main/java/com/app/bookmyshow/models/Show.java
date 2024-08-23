@@ -3,6 +3,7 @@ package com.app.bookmyshow.models;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,8 +23,10 @@ public class Show extends BaseModel {
     @ManyToOne
     private Screen screen;
 
-
+    @OneToMany
     private List<ShowSeat> showSeats;
+
+    @OneToMany
     private List<ShowSeatType> showSeatTypes;
 
 }

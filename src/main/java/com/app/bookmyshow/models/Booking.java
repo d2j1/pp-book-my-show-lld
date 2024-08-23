@@ -1,8 +1,6 @@
 package com.app.bookmyshow.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +22,7 @@ public class Booking extends BaseModel {
     @ManyToOne
     private User bookedBy;
     private Date bookingDate;
+    @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
 
 
